@@ -7,7 +7,10 @@ __version__ = "0.0.0"
 
 __all__ = ()
 
-from discord_bot import run
+from os import chdir
+chdir('demodaybot')  # ugly workaround
+
+from demodaybot import run
 
 
 if __name__ == '__main__':

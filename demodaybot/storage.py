@@ -32,6 +32,8 @@ def decoder(dct):
 
 def default_factory(): return [0] * NUMBER_OF_GAMES
 
+# np.stack(tuple(d.values()), axis=0)
+
 
 class Storage(defaultdict, Dict[str, ndarray]):
     path: Path
@@ -44,7 +46,7 @@ class Storage(defaultdict, Dict[str, ndarray]):
         self.load()
 
     def save(self) -> None:
-        self.path.write_text(dumps(dict(zip(self.keys(), self.values())), cls=NumpyEncoder))
+        self.path.write_text(dumps(dict(zip(self.keys(), self.values())), cls=NumpyEncoder, indent=2))
 
     def load(self) -> None:
         if not self.path.exists(): self.path.touch()
@@ -52,5 +54,5 @@ class Storage(defaultdict, Dict[str, ndarray]):
 
 
 if __name__ == '__main__':
-    storage = Storage('../data/votes.json')
+    storage = Storage('data/votes.json')
     print(storage["0"][4])

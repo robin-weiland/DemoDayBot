@@ -10,7 +10,8 @@ __all__ = ('run',)
 from os import getenv
 from dotenv import load_dotenv
 from pathlib import Path
-from discord_bot.commands import DDBot
+from demodaybot.commands import DDBot
+from demodaybot.log import *
 
 
 def run() -> None:

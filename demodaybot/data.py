@@ -14,7 +14,6 @@ MEMBERS_PATH = Path('./data/members.json')
 VOTES_PATH = Path('./data/votes.json')
 VOTING_CHANNELS_PATH = Path('./data/voting_channels.json')
 
-
 members = loads(MEMBERS_PATH.read_text())
 voting_channels = loads(VOTING_CHANNELS_PATH.read_text())
 
