@@ -12,14 +12,13 @@ from setuptools import setup
 from sys import argv
 from shutil import rmtree
 from os import remove
-
+from glob import glob
 
 BUILD_DIRS = (
     'demodaybot.egg-info',
     'build',
     'dist'
 )
-
 
 if __name__ == '__main__':
     print('cleaning up:')
@@ -56,10 +55,12 @@ if __name__ == '__main__':
     else:
         requirements = []
 
+    # argv = [argv[0], 'sdist', 'bdist_wheel']
+
     setup(
         name='DemoDayBot',
         version='0.0.1',
-        packages=['discord_bot'],
+        packages=['demodaybot'],
         url='https://github.com/robin-weiland/DemoDayBot',
         license='GPL',
         author="Robin 'r0w' Weiland",
@@ -93,5 +94,10 @@ if __name__ == '__main__':
             'console_scripts': [
                 'demodaybot = demodaybot:run'
             ]
-        }
+        },
+        data_files=[
+            ('demodaybot/data/', glob('demodaybot/data/*')),
+            ('demodaybot/data/logs', '')
+        ],
+
     )

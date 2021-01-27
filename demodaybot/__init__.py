@@ -12,11 +12,13 @@ from dotenv import load_dotenv
 from pathlib import Path
 from demodaybot.commands import DDBot
 from demodaybot.log import *
+from pathlib import Path
 
 
 def run() -> None:
-    load_dotenv(Path('./data/.env'))
-    DDBot().run(getenv('TOKEN'))
+    env = Path('./data/.env')
+    if env.exists(): load_dotenv(env)
+    DDBot().run(getenv('DDB_TOKEN'))
 
 
 if __name__ == '__main__':

@@ -11,3 +11,143 @@
 [2021-01-23 00:05:19] [[BisschenHeller | 285848592802119681] test?]
 [2021-01-23 23:27:30] [[r0w | 325354358734848020] test]
 [2021-01-25 23:05:43] [[Nathalie | 476484387324690450 || orga-chat] Heyho, gibt's noch irgendwas, was hier dringend ist getan werden muss?]
+[2021-01-26 17:54:59] [[r0w | 325354358734848020 || poll-admin] !save]
+[2021-01-26 20:29:16] [[r0w | 325354358734848020 || poll-admin] !poll-activate]
+[2021-01-26 20:31:18] [[r0w | 325354358734848020 || poll-admin] !pollactivate]
+[2021-01-26 20:32:34] [[r0w | 325354358734848020 || best-design] 1]
+[2021-01-26 20:32:48] [[r0w | 325354358734848020 || poll-admin] !poll-activate]
+[2021-01-26 20:32:56] [[r0w | 325354358734848020 || best-design] 1]
+[2021-01-26 20:33:51] [[r0w | 325354358734848020 || best-design] 1]
+[2021-01-26 20:34:00] [[r0w | 325354358734848020 || poll-admin] !poll-activate]
+[2021-01-26 20:34:05] [[r0w | 325354358734848020 || best-design] 1]
+[2021-01-26 23:51:11] [[r0w | 325354358734848020 || best-game] 1]
+[2021-01-26 23:51:40] [[r0w | 325354358734848020 || poll-admin] !poll-status]
+[2021-01-26 23:51:52] [[r0w | 325354358734848020 || poll-admin] !poll-activate]
+[2021-01-26 23:53:12] [[r0w | 325354358734848020 || best-game] 1]
+[2021-01-26 23:53:39] [[r0w | 325354358734848020 || poll-admin] !poll-status]
+[2021-01-26 23:53:46] [[r0w | 325354358734848020 || poll-admin] !poll-activate]
+[2021-01-26 23:53:51] [[r0w | 325354358734848020 || best-game] 1]
+[2021-01-26 23:55:39] [[r0w | 325354358734848020 || best-game] 2]
+[2021-01-26 23:55:56] [[r0w | 325354358734848020 || poll-admin] !poll-activate]
+[2021-01-26 23:56:08] [[r0w | 325354358734848020 || best-game] 2]
+[2021-01-27 00:21:37] [[r0w | 325354358734848020 || poll-admin] !poll-active]
+[2021-01-27 00:22:03] [[r0w | 325354358734848020 || poll-admin] !poll-status]
+[2021-01-27 00:22:30] [[r0w | 325354358734848020 || poll-admin] !poll-activate]
+[2021-01-27 00:23:31] [[r0w | 325354358734848020 || poll-admin] !poll-status]
+[2021-01-27 12:35:03] [[r0w | 325354358734848020 || poll-admin] !help]
+[2021-01-27 12:57:16] [[r0w | 325354358734848020 || poll-admin] !poll-activate]
+[2021-01-27 13:03:09] [[r0w | 325354358734848020 || best-audio] test]
+[2021-01-27 16:06:11] [[r0w | 325354358734848020 || poll-admin] !poll-result]
+[2021-01-27 16:06:20] [[r0w | 325354358734848020 || poll-admin] !poll-result best-game]
+[2021-01-27 16:06:51] [[r0w | 325354358734848020 || poll-admin] !poll-result]
+[2021-01-27 16:21:36] [[r0w | 325354358734848020 || poll-admin] !poll-results]
+[2021-01-27 16:21:47] [[r0w | 325354358734848020 || poll-admin] !poll-result]
+[2021-01-27 16:22:06] [[r0w | 325354358734848020 || poll-admin] !poll-result art sound meme poster]
+[2021-01-27 19:48:15] [[BisschenHeller | 285848592802119681 || orga-chat] Emojiiiis]
+[2021-01-27 19:49:32] [[BisschenHeller | 285848592802119681 || orga-chat] Wie zum beispiel]
+[2021-01-27 19:49:35] [[BisschenHeller | 285848592802119681 || orga-chat] <:hammerandsickle:804060513314406431>]
+[2021-01-27 19:49:38] [[BisschenHeller | 285848592802119681 || orga-chat] <:HappyGeralt:804060513684291605>]
+[2021-01-27 19:49:46] [[BisschenHeller | 285848592802119681 || orga-chat] <:KarlMarx:804060514401124362>]
+[2021-01-27 19:49:52] [[BisschenHeller | 285848592802119681 || orga-chat] oder]
+[2021-01-27 19:49:58] [[BisschenHeller | 285848592802119681 || orga-chat] <:youdroppedthis:804060513796751411>]
+[2021-01-27 19:52:06] [[BisschenHeller | 285848592802119681 || orga-chat] Und vielleicht ändern wir unsere Nicknames und geben der Orga eine freundlichere Farbe, Rot ist so aggresiv...]
+[2021-01-27 21:12:10] [[r0w | 325354358734848020 || best-art] Willkommen im Voting-Kanal der Kategorie _best-art_. Hier wird das Spiel mit der besten Art gekührt.
+Zum Wählen muss die entsprechende Zahl des Spiels in den Chat geschrieben werden. Eine neue Zahl 
+überschreibt die bisherige Wahl. Die Wahl kann mit `0` zurückgezogen werden. Zur Auswahl stehen:
+
+> **1** random string of characters 1
+
+> **2** random string of characters 2
+
+> **3** random string of characters 3
+
+> [Slots for 25 random string of chars games]]
+[2021-01-27 21:12:44] [[r0w | 325354358734848020 || best-technology] Willkommen im Voting-Kanal der Kategorie _best-technology_. Hier wird innovativste Spiel gekührt.
+Zum Wählen muss die entsprechende Zahl des Spiels in den Chat geschrieben werden. Eine neue Zahl 
+überschreibt die bisherige Wahl. Die Wahl kann mit `0` zurückgezogen werden. Zur Auswahl stehen:
+
+> **1** random string of characters 1
+
+> **2** random string of characters 2
+
+> **3** random string of characters 3
+
+> [Slots for 25 random string of chars games]]
+[2021-01-27 21:13:09] [[r0w | 325354358734848020 || best-design] Willkommen im Voting-Kanal der Kategorie _best-design_. Hier wird das Spiel mit dem besten Gamedesign gekührt.
+Zum Wählen muss die entsprechende Zahl des Spiels in den Chat geschrieben werden. Eine neue Zahl 
+überschreibt die bisherige Wahl. Die Wahl kann mit `0` zurückgezogen werden. Zur Auswahl stehen:
+
+> **1** random string of characters 1
+
+> **2** random string of characters 2
+
+> **3** random string of characters 3
+
+> [Slots for 25 random string of chars games]]
+[2021-01-27 21:13:36] [[r0w | 325354358734848020 || best-story] Willkommen im Voting-Kanal der Kategorie _best-story_. Hier wird das Spiel mit dem besten Storytelling.
+Zum Wählen muss die entsprechende Zahl des Spiels in den Chat geschrieben werden. Eine neue Zahl 
+überschreibt die bisherige Wahl. Die Wahl kann mit `0` zurückgezogen werden. Zur Auswahl stehen:
+
+> **1** random string of characters 1
+
+> **2** random string of characters 2
+
+> **3** random string of characters 3
+
+> [Slots for 25 random string of chars games]]
+[2021-01-27 21:14:13] [[r0w | 325354358734848020 || best-sound] Willkommen im Voting-Kanal der Kategorie _best-sound_. Hier wird das Spiel mit dem besten Sounddesign gekührt.
+Zum Wählen muss die entsprechende Zahl des Spiels in den Chat geschrieben werden. Eine neue Zahl 
+überschreibt die bisherige Wahl. Die Wahl kann mit `0` zurückgezogen werden. Zur Auswahl stehen:
+
+> **1** random string of characters 1
+
+> **2** random string of characters 2
+
+> **3** random string of characters 3
+
+> [Slots for 25 random string of chars games]]
+[2021-01-27 21:15:38] [[r0w | 325354358734848020 || best-meme] Willkommen im Voting-Kanal der Kategorie _best-meme_. Hier wird das lustigste Spiel gekürt [TODO bessere Beschreibung].
+Zum Wählen muss die entsprechende Zahl des Spiels in den Chat geschrieben werden. Eine neue Zahl 
+überschreibt die bisherige Wahl. Die Wahl kann mit `0` zurückgezogen werden. Zur Auswahl stehen:
+
+> **1** random string of characters 1
+
+> **2** random string of characters 2
+
+> **3** random string of characters 3
+
+> [Slots for 25 random string of chars games]]
+[2021-01-27 21:19:35] [[r0w | 325354358734848020 || best-poster] Willkommen im Voting-Kanal der Kategorie _best-poster_. Hier wird das beste Poster gekührt.
+Zum Wählen muss die entsprechende Zahl des Spiels in den Chat geschrieben werden. Eine neue Zahl 
+überschreibt die bisherige Wahl. Die Wahl kann mit `0` zurückgezogen werden. Zur Auswahl stehen:
+
+> **1** random string of characters 1
+
+> **2** random string of characters 2
+
+> **3** random string of characters 3
+
+> [Slots for 25 random string of chars games]]
+[2021-01-27 21:20:19] [[r0w | 325354358734848020 || experimental-projects] Willkommen im Voting-Kanal der Kategorie _experimental-projects_. [TODO  Beschreibung]
+Zum Wählen muss die entsprechende Zahl des Spiels in den Chat geschrieben werden. Eine neue Zahl 
+überschreibt die bisherige Wahl. Die Wahl kann mit `0` zurückgezogen werden. Zur Auswahl stehen:
+
+> **1** random string of characters 1
+
+> **2** random string of characters 2
+
+> **3** random string of characters 3
+
+> [Slots for 25 random string of chars games]]
+[2021-01-27 21:29:24] [[r0w | 325354358734848020 || poll-admin] !poll-status]
+[2021-01-27 21:29:50] [[r0w | 325354358734848020 || poll-admin] !poll-result art]
+[2021-01-27 21:30:39] [[r0w | 325354358734848020 || poll-admin] !poll-result art]
+[2021-01-27 21:31:15] [[r0w | 325354358734848020 || poll-admin] !poll-result art]
+[2021-01-27 21:36:00] [[r0w | 325354358734848020 || poll-admin] !poll-result art]
+[2021-01-27 21:36:37] [[r0w | 325354358734848020 || orga-chat] !poll-result art]
+[2021-01-27 21:36:43] [[r0w | 325354358734848020 || orga-chat] YES!]
+[2021-01-27 21:46:19] [[r0w | 325354358734848020 || poll-admin] !poll-result art]
+[2021-01-27 21:46:59] [[r0w | 325354358734848020 || orga-chat] Oder findet ihr den darktheme besser?]
+[2021-01-27 21:47:07] [[r0w | 325354358734848020 || orga-chat] !poll-result art]
+[2021-01-27 21:47:42] [[r0w | 325354358734848020 || poll-admin] !poll-result]
+[2021-01-27 21:49:50] [[r0w | 325354358734848020 || poll-admin] !poll-result]
