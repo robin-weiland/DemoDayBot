@@ -12,9 +12,7 @@ from json import loads, dumps, JSONEncoder
 from pathlib import Path
 from functools import partial
 from numpy import array, stack, ndarray, int8
-# from pandas import Dataframe
 import pandas as pd
-from collections import Counter
 from logging import getLogger
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
@@ -44,8 +42,6 @@ def decoder(dct):
 
 
 def default_factory(): return [0] * NUMBER_OF_GAMES
-
-# np.stack(tuple(d.values()), axis=0)
 
 
 class Storage(defaultdict, Dict[int, ndarray]):
@@ -83,9 +79,9 @@ class Storage(defaultdict, Dict[int, ndarray]):
         data = pd.DataFrame(self.matrix[:, cat])
         rdata = data.value_counts().sort_values(ascending=False)
         rdata.index = rdata.index.map(lambda x: games[x[0]])
+        plt.style.use('dark_background')
         fig = plt.figure()
-        fig.patch.set_facecolor('#36393f')
-        plt.title(name)
+        # fig.patch.set_facecolor('#36393f')
         # plt.rcParams['axes.facecolor'] = '#36393f'
         ax = plt.figure().gca()
         ax.set_title(name)

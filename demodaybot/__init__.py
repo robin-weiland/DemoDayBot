@@ -9,7 +9,6 @@ __all__ = ('run',)
 
 from os import getenv
 from dotenv import load_dotenv
-from pathlib import Path
 from demodaybot.commands import DDBot
 from demodaybot.log import *
 from pathlib import Path

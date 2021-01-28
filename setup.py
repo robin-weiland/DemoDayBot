@@ -8,7 +8,9 @@ __version__ = "0.0.0"
 __all__ = ()
 
 from pathlib import Path
-from setuptools import setup
+from setuptools import find_packages
+import setuptools
+from distutils.core import setup
 from sys import argv
 from shutil import rmtree
 from os import remove
@@ -41,6 +43,7 @@ if __name__ == '__main__':
         remove(Path('demodaybot/data') / 'members.json')
         remove(Path('demodaybot/data') / 'voting_channels.json')
 
+    print(find_packages())
     readme_path = Path('README.md')
     if readme_path.exists():
         with readme_path.open('r') as file:
@@ -50,23 +53,26 @@ if __name__ == '__main__':
 
     requirements_path = Path('requirements.txt')
     if requirements_path.exists():
-        with requirements_path.open('r') as file:
-            requirements = [line for line in file.readlines() if not line.startswith('#') and line]
+        requirements = [line for line in requirements_path.read_text().splitlines(keepends=False) if not line.startswith('#') and line]
     else:
         requirements = []
 
-    # argv = [argv[0], 'sdist', 'bdist_wheel']
-
+    # requirements = list(map(lambda x: [x.split('==')[0], '==' + x.split('==')[1]], requirements))
+    print(requirements)
     setup(
+        packages=find_packages(),
+        setup_requires=['wheel'],
         name='DemoDayBot',
         version='0.0.1',
-        packages=['demodaybot'],
+        # packages=['demodaybot'],
         url='https://github.com/robin-weiland/DemoDayBot',
         license='GPL',
         author="Robin 'r0w' Weiland",
         author_email='robinweiland@gmx.de',
         description='Discord bot for the TUM DemoDay 2021',
         long_description=long_description,
+        install_requires=requirements,
+        # requires=requirements,
         long_description_content_type='text/markdown',
         keywords=['discord', 'bot'],
         python_requires='>=3.6',
@@ -76,9 +82,15 @@ if __name__ == '__main__':
 
             'Environment :: Console',
 
-            # Indtended Audience
+            'Intended Audience :: Education',
+            'Intended Audience :: Science/Research',
 
-            'License :: OSI Approved :: GPL License',
+            'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)',
+
+            'Natural Language :: English',
+            'Natural Language :: German',
+
+            'Operating System :: OS Independent',
 
             'Programming Language :: Python :: 3 :: Only',
             'Programming Language :: Python :: 3.6',
@@ -86,7 +98,7 @@ if __name__ == '__main__':
             'Programming Language :: Python :: 3.8',
             'Programming Language :: Python :: 3.9',
 
-            # Topic
+            'Topic :: Communications :: Chat',
 
             'Typing :: Typed'
         ],
@@ -95,9 +107,10 @@ if __name__ == '__main__':
                 'demodaybot = demodaybot:run'
             ]
         },
-        data_files=[
-            ('demodaybot/data/', glob('demodaybot/data/*')),
-            ('demodaybot/data/logs', '')
-        ],
-
+        # data_files=[
+        #     ('data', glob('demodaybot/data/*.json', )),
+        #     ('data/orga', 'demodaybot/data/orga'),
+        #     ('data/logs', glob('demodaybot/data/logs/*.log'))
+        # ],
+        include_package_data=True
     )

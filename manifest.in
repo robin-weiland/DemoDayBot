@@ -1,0 +1,2 @@
+include demodaybot/data/*
+include demodaybot/data/logs/*
