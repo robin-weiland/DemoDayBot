@@ -23,14 +23,18 @@
 # Installation
 
 ```shell script
-TODO
+# Download the latest release and then 
+
+pip install path/to/*.tar.gz
+
+# or potentially on unix
+
+pip3 install path/to/*.tar.gz
 ```
 
 # Usage
 
-- Typical Examples:
-
-> TODO
+You might want to look into the (incomplete) [wiki](https://github.com/robin-weiland/DemoDayBot/wiki)
 
 
 ---

@@ -74,7 +74,6 @@ class DDBot(Bot):
         else:
             await member.add_roles(self.VISITOR)
 
-
     async def on_message(self, message):
         if message.author == self.user: return
         await self.process_commands(message)
