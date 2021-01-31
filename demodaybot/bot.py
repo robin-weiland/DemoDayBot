@@ -3,21 +3,18 @@
 
 __author__ = "Robin 'r0w' Weiland"
 __date__ = "2021-01-21"
-__version__ = "0.0.0"
+__version__ = "0.0.2"
 
 __all__ = ('DDBot',)
 
-from discord.utils import get
 from demodaybot.storage import Storage
 from demodaybot.data import voting_channels, games, orga, members, VOTES_PATH
+from demodaybot.security import safe_format
+from demodaybot.messages import WELCOME
 from discord.ext.commands import Bot, Command
 from discord.ext import commands
-from discord import Activity, ActivityType, File, Intents, Guild, Role
+from discord import Activity, ActivityType, File
 from logging import getLogger
-
-intents = Intents.default()
-intents.members = True
-
 
 storage = Storage(VOTES_PATH)
 
@@ -31,13 +28,9 @@ VOTE_ACTIVE = False  # I HATE global variables
 
 class DDBot(Bot):
     VOTE_ACTIVE: bool = False
-    guild: Guild
-    ORGA: Role
-    EXPO: Role
-    VISITOR: Role
 
     def __init__(self):
-        super(DDBot, self).__init__(command_prefix='!', intents=intents)
+        super(DDBot, self).__init__(command_prefix='+')
 
         for f in self.__class__.__dict__.values():
             if isinstance(f, Command): self.add_command(f)
@@ -46,59 +39,49 @@ class DDBot(Bot):
         self.VOTE_ACTIVE = False
 
     async def on_ready(self):
-        await self.change_presence(activity=Activity(type=ActivityType.playing, name="your cool games"))
-        self.guild = [guild for guild in self.guilds if guild.name == 'DemoDay 2021'][0]
-        self.voting_channels = [category for category in self.guild.categories if category.name == 'VOTING'][0].channels
-        # self.ORGA = get(self.guild.roles, id='791315139898114088')
-        # self.EXPO = get(self.guild.roles, id='791315170215460864')
-        # self.VISITOR = get(self.guild.roles, id='791315081992077342')
-        self.ORGA = get(self.guild.roles, name='Orga')
-        self.EXPO = get(self.guild.roles, name='Aussteller')
-        self.VISITOR = get(self.guild.roles, name='Besucher')
-        system_logger.info('Connected!')
-        system_logger.debug(f'Voting-Channels: {self.voting_channels}')
+        try:
+            await self.change_presence(activity=Activity(type=ActivityType.playing, name="your cool games"))
+            guild = [guild for guild in self.guilds if guild.name == 'DemoDay 2021'][0]
+            self.voting_channels = [category for category in guild.categories if category.name == 'VOTING'][0].channels
+            system_logger.info('Connected!')
+        except Exception as ex:
+            system_logger.warning(f'Error occured: on_ready(): {ex.__class__.__name__}: {ex}')
 
     async def on_member_join(self, member):
-        system_logger.info(f'{member.name} [{member.id}|{member.top_role.name}] joined!')
-        await member.send(f'Hallo **{member.name}**. Willkommen auf dem DemoDay 2021!')
-        return  # apparently
-        if member.id in orga:
-            await member.add_roles(self.ORGA)
-            await member.edit(nick=f'{member.name} (Orga)')
-        elif member.id in members:
-            await member.add_roles(self.EXPO)
-            for game in games:
-                if member.id in game['members']:
-                    await member.edit(nick=f'{member.name} [{game["short"]}]')
-                    break
-        else:
-            await member.add_roles(self.VISITOR)
+        try:
+            system_logger.info(f'{member.name} [{member.id}|{member.top_role.name}] joined!')
+            await member.send(safe_format(WELCOME, member=member.name))
+            # TODO: maybe add the `add-role` thing if the 403 error gets resolved
+        except Exception as ex:
+            system_logger.warning(f'Error occured: on_member_join({member.id}): {ex.__class__.__name__}: {ex}')
 
     async def on_message(self, message):
-        if message.author == self.user: return
-        await self.process_commands(message)
-        chat_logger.info(f'[{message.author.name} | {message.author.id} || {message.channel.name}] {message.content}')
-        # if message.channel.id not in voting_channels.values(): return
-        if message.channel in self.voting_channels:
-            if VOTE_ACTIVE:
-                try:
-                    number = int(message.content) - 1
-                    storage[message.author.id][tuple(voting_channels.values()).index(message.channel.id) - 1] = number
-                    await message.author.send(
-                        f'Deine Stimme **{games[number]["name"]}** für die Kategorie _{message.channel.name}_ wurde erfolgreich gezählt!'
-                    )
-                    vote_logger.info(f'[{message.author.name}|{message.author.id}][{message.channel.name}][{message.content}]')
-                except ValueError:
-                    await message.author.send(f'Es trat ein Fehler bei Deiner Wahl für _{message.channel.name}_ auf!')
-                    vote_error_logger.error(f'[{message.author.name}|{message.author.id}][{message.channel.name}][{message.content}]')
-                except (IndexError, OverflowError,):
-                    await message.author.send(f'Es können nur `0` (Rücknahme der Stimme) bis {len(games)} gewählt werden!')
-                    vote_error_logger.error(f'[{message.author.name}|{message.author.id}][{message.channel.name}][{message.content}]')
-                finally:
+        try:
+            if message.author == self.user: return
+            await self.process_commands(message)
+            chat_logger.info(f'[{message.author.name} | {message.author.id} || {message.channel.name}] {message.content}')
+            if message.channel in self.voting_channels:
+                if VOTE_ACTIVE:
+                    try:
+                        number = int(message.content) - 1
+                        storage[message.author.id][tuple(voting_channels.values()).index(message.channel.id) - 1] = number
+                        await message.author.send(
+                            f'Deine Stimme **{games[number]["name"]}** für die Kategorie _{message.channel.name}_ wurde erfolgreich gezählt!'
+                        )
+                        vote_logger.info(f'[{message.author.name}|{message.author.id}][{message.channel.name}][{message.content}]')
+                    except ValueError:
+                        await message.author.send(f'Es trat ein Fehler bei Deiner Wahl für _{message.channel.name}_ auf!')
+                        vote_error_logger.error(f'[{message.author.name}|{message.author.id}][{message.channel.name}][{message.content}]')
+                    except (IndexError, OverflowError,):
+                        await message.author.send(f'Es können nur `0` (Rücknahme der Stimme) bis {len(games)} gewählt werden!')
+                        vote_error_logger.error(f'[{message.author.name}|{message.author.id}][{message.channel.name}][{message.content}]')
+                    finally:
+                        await message.delete()
+                else:
                     await message.delete()
-            else:
-                await message.delete()
-                await message.author.send(f'Die Abstimmung ist (noch) nicht aktiviert!')
+                    await message.author.send(f'Die Abstimmung ist (noch) nicht aktiviert!')
+        except Exception as ex:
+            system_logger.warning(f'Error occured: on_message({message.id}): {ex.__class__.__name__}: {ex}')
 
     @commands.command(name='save')
     @commands.has_role('Orga')
@@ -152,15 +135,18 @@ class DDBot(Bot):
             if 'sound' in names or not names:
                 with storage.result('best-sound') as file:
                     await ctx.send(file=File(file, filename=f'best-sound.png'))
-            if 'meme' in names or not names:
-                with storage.result('best-meme') as file:
-                    await ctx.send(file=File(file, filename=f'best-meme.png'))
-            if 'inclusive' in names or not names:
-                with storage.result('most-inclusive') as file:
-                    await ctx.send(file=File(file, filename=f'most-inclusive.png'))
             if 'poster' in names or not names:
                 with storage.result('best-poster') as file:
                     await ctx.send(file=File(file, filename=f'best-poster.png'))
+            if 'humor' in names or not names:
+                with storage.result('best-humor') as file:
+                    await ctx.send(file=File(file, filename=f'best-humor.png'))
+            if 'inclusive' in names or not names:
+                with storage.result('most-inclusive') as file:
+                    await ctx.send(file=File(file, filename=f'most-inclusive.png'))
+            if 'booth' in names or not names:
+                with storage.result('best-booth') as file:
+                    await ctx.send(file=File(file, filename=f'best-booth.png'))
             if 'experimental' in names or not names:
                 with storage.result('experimental-projects') as file:
                     await ctx.send(file=File(file, filename=f'experimental-projects.png'))
