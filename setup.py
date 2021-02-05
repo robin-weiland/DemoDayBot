@@ -3,7 +3,7 @@
 
 __author__ = "Robin 'r0w' Weiland"
 __date__ = "2021-01-25"
-__version__ = "0.0.0"
+__version__ = "0.0.3" + '-linux-0.7'
 
 __all__ = ()
 
@@ -43,7 +43,6 @@ if __name__ == '__main__':
         remove(Path('demodaybot/data') / 'members.json')
         remove(Path('demodaybot/data') / 'voting_channels.json')
 
-    print(find_packages())
     readme_path = Path('README.md')
     if readme_path.exists():
         with readme_path.open('r') as file:
@@ -57,16 +56,17 @@ if __name__ == '__main__':
     else:
         requirements = []
 
+    print(requirements)
     # requirements = list(map(lambda x: [x.split('==')[0], '==' + x.split('==')[1]], requirements))
     print(requirements)
     setup(
         packages=find_packages(),
         setup_requires=['wheel'],
         name='DemoDayBot',
-        version='0.0.1',
+        version=__version__,
         # packages=['demodaybot'],
         url='https://github.com/robin-weiland/DemoDayBot',
-        license='GPL',
+        license='GPL-3.0',
         author="Robin 'r0w' Weiland",
         author_email='robinweiland@gmx.de',
         description='Discord bot for the TUM DemoDay 2021',

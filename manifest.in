@@ -1,2 +1,3 @@
 include demodaybot/data/*
 include demodaybot/data/logs/*
+exclude demodaybot/data/.env
