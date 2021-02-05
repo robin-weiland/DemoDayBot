@@ -24,8 +24,9 @@ CONSOLE: str = rf"""
 """
 
 WELCOME: str = 'Hallo **{member}**. Willkommen auf dem DemoDay 2021!\n' \
-               'Lies Dir bitte zuerst <#791303033371099179> durch. Danach kannst\n' \
-               'Du unter <#805447044910284811>  aussuchen, ob Du als Aussteller oder Besucher hier bist. \n' \
+               'Lies Dir bitte zuerst <#791303033371099179> durch.\n' \
+               'Ich war mal so frei und habe Dir die Besucher-Rolle gegeben. Wenn Du hier bist, um Dein Spiel\n' \
+               'zu zeigen, kannst Du in <#805447044910284811> die Rolle _Aussteller_ auswählen.\n' \
                'In der <#799932766933745664> siehst Du dann, was heute angeboten wird und in <#791303033371099180>\n' \
                'werden wir Dich während des Events auf dem Laufen halten. Ach <#799940173264846859> gibt es auch noch!'
 
