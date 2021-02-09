@@ -11,7 +11,12 @@ from os import chdir
 chdir('demodaybot')  # ugly workaround
 
 from demodaybot import run
+from logging import getLogger
+
+logger = getLogger('System')
 
 
 if __name__ == '__main__':
-    run()
+    while True:
+        logger.info('Started Bot!')
+        run()
