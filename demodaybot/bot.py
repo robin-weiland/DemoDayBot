@@ -49,7 +49,7 @@ class DDBot(Bot):
     async def on_ready(self):
         try:
             await self.change_presence(activity=Activity(type=ActivityType.playing, name="your cool games"))
-            self.guild = [guild for guild in self.guilds if guild.name == 'DemoDay 2021'][0]
+            self.guild = [guild for guild in self.guilds if guild.id == 791303033371099177][0]
             self.roles = dict((role.name, get(self.guild.roles, name=role.name)) for role in self.guild.roles)
             vchannels = [category for category in self.guild.categories if category.name == 'Voting'][0].channels
             data.voting_channels = dict(zip(map(attrgetter('name'), vchannels), map(attrgetter('id'), vchannels)))
