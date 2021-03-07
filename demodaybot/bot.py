@@ -42,8 +42,6 @@ class DDBot(Bot):
         for f in self.__class__.__dict__.values():
             if isinstance(f, Command): self.add_command(f)
 
-        self.roles = None
-
         self.remove_command('help')
 
     async def on_ready(self):
@@ -184,7 +182,6 @@ class DDBot(Bot):
 
     async def change_status_after_time(self):
         games = list(map(lambda x: x['name'], data.games))
-        games.pop(0)
         while True:
             await sleep(randint(30, 90))
             await self.change_presence(activity=Activity(type=ActivityType.playing, name=choice(games or ['your cool games'])))
