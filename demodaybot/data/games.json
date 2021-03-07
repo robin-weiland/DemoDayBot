@@ -1,5 +1,10 @@
 [
   {
+    "name": "Enthaltung",
+    "short": "",
+    "members": []
+  },
+  {
     "name": "Astro Souls",
     "short": "",
     "members": []
@@ -151,11 +156,6 @@
   },
   {
     "name": "Shattered World",
-    "short": "",
-    "members": []
-  },
-  {
-    "name": "",
     "short": "",
     "members": []
   }

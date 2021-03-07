@@ -53,6 +53,7 @@ class DDBot(Bot):
             data.voting_channels = dict(zip(map(attrgetter('name'), vchannels), map(attrgetter('id'), vchannels)))
             system_logger.info('Connected!')
             await self.loop.create_task(self.change_status_after_time())
+            # await self.loop.create_task(self.save_poll())
         except Exception as ex:
             system_logger.warning(f'Error occured: on_ready(): {ex.__class__.__name__}: {ex}')
 
@@ -78,8 +79,9 @@ class DDBot(Bot):
             if message.channel.id in data.voting_channels.values():
                 if data.vote_active:
                     try:
-                        number = int(content) - 1
-                        data.storage[message.author.id][tuple(data.voting_channels.values()).index(message.channel.id) - 1] = number
+                        number = int(content)
+                        if number not in range(len(data.games)): raise IndexError
+                        data.storage[message.author.id][tuple(data.voting_channels.values()).index(message.channel.id)] = number
                         await message.author.send(
                             f'Deine Stimme **{data.games[number]["name"]}** für die Kategorie _{message.channel.name}_ wurde erfolgreich gezählt!'
                         )
@@ -88,7 +90,7 @@ class DDBot(Bot):
                         await message.author.send(f'Es trat ein Fehler bei Deiner Wahl für _{message.channel.name}_ auf!')
                         vote_error_logger.error(f'[{message.author.name}|{message.author.id}][{message.channel.name}][{content}]')
                     except (IndexError, OverflowError,):
-                        await message.author.send(f'Es können nur `0` (Rücknahme der Stimme) bis {len(data.games)} gewählt werden!')
+                        await message.author.send(f'Es können nur `0` (Rücknahme der Stimme) bis `{len(data.games) - 1}` gewählt werden!')
                         vote_error_logger.error(f'[{message.author.name}|{message.author.id}][{message.channel.name}][{content}]')
                     finally:
                         await message.delete()
@@ -120,6 +122,7 @@ class DDBot(Bot):
     @commands.has_role('Orga')
     async def poll_deactivate(ctx) -> None:
         Data().vote_active = False
+        data.storage.save()
         system_logger.info(f'Poll deactivated by {ctx.author.name}!')
         await ctx.channel.send('Poll deactivated!')
 
@@ -180,11 +183,17 @@ class DDBot(Bot):
         except Exception as exc:
             await ctx.channel.send(f'Failed to get results! {exc.__class__.__name__}: {exc}')
 
-    async def change_status_after_time(self):
+    async def change_status_after_time(self) -> None:
         games = list(map(lambda x: x['name'], data.games))
+        games.pop(0)
         while True:
             await sleep(randint(30, 90))
             await self.change_presence(activity=Activity(type=ActivityType.playing, name=choice(games or ['your cool games'])))
+
+    async def save_poll(self) -> None:
+        await sleep(300)
+        if data.vote_active:
+            data.storage.save()
 
 
 if __name__ == '__main__': pass
