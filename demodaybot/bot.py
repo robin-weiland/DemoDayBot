@@ -53,7 +53,7 @@ class DDBot(Bot):
             data.voting_channels = dict(zip(map(attrgetter('name'), vchannels), map(attrgetter('id'), vchannels)))
             system_logger.info('Connected!')
             await self.loop.create_task(self.change_status_after_time())
-            # await self.loop.create_task(self.save_poll())
+            await self.loop.create_task(self.save_poll())
         except Exception as ex:
             system_logger.warning(f'Error occured: on_ready(): {ex.__class__.__name__}: {ex}')
 
