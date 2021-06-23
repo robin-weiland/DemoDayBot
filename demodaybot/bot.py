@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 __author__ = "Robin 'r0w' Weiland"
@@ -7,7 +7,7 @@ __version__ = "0.0.3"
 
 __all__ = ('DDBot',)
 
-from demodaybot.data import Data
+from demodaybot.data import Data, load_games, load_members
 from demodaybot.security import safe_format
 from demodaybot.messages import WELCOME, MOBILE
 from discord.ext.commands import Bot, Command
@@ -99,6 +99,22 @@ class DDBot(Bot):
                     await message.author.send(f'Die Abstimmung ist (noch) nicht aktiviert!')
         except Exception as ex:
             system_logger.warning(f'Error occured: on_message({message.id}): {ex.__class__.__name__}: {ex}')
+
+    @commands.command(name='reload')
+    @commands.has_role('Orga')
+    async def reload(ctx, module) -> None:
+        {
+            'all': lambda: load_games() or load_members(),
+            'members': lambda: load_members(),
+            'games': lambda: load_games(),
+        }[module]()
+
+    @commands.command(name='games')
+    @commands.has_role('Orga')
+    async def games(ctx) -> None:
+        from operator import itemgetter
+        from itertools import chain
+        await ctx.channel.send('\n'.join(map(itemgetter('name'), Data().games)))
 
     @commands.command(name='poll-save')
     @commands.has_role('Orga')

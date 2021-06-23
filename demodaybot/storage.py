@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 __author__ = "Robin 'r0w' Weiland"
@@ -74,7 +74,7 @@ class Storage(defaultdict, Dict[int, ndarray]):
         name = self.categories[cat]
 
         data = pd.DataFrame(self.matrix[:, cat])
-        rdata = data.value_counts().sort_values(ascending=False)[:3]
+        rdata = data.value_counts().sort_values(ascending=False)  # [:3]
         rdata.index = rdata.index.map(lambda x: self.games[x[0]])
 
         plt.style.use('dark_background')

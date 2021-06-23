@@ -1,15 +1,16 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 __author__ = "Robin 'r0w' Weiland"
 __date__ = "2021-01-21"
 __version__ = "0.0.3"
 
-__all__ = ('VOTES_PATH', 'Data',)
+__all__ = ('VOTES_PATH', 'Data', 'load_games', 'load_members',)
 
 from pathlib import Path
 from json import loads
 from itertools import chain
+from operator import itemgetter
 from demodaybot.storage import Storage
 
 from typing import Any, List, Dict
@@ -83,8 +84,15 @@ class Data(DataSingleton):
         self._storage = value
 
 
-Data().games = loads(GAMES_PATH.read_text())
-Data().members = list(chain.from_iterable(map(lambda x: x['members'], Data().games)))
+def load_games() -> None:
+    Data().games = loads(GAMES_PATH.read_text())
 
+
+def load_members() -> None:
+    Data().members = list(chain.from_iterable(map(lambda x: x['members'], Data().games)))
+
+
+load_games()
+load_members()
 
 if __name__ == '__main__': pass
