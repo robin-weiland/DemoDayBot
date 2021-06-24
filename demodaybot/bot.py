@@ -65,6 +65,7 @@ class DDBot(Bot):
                                  413650836737097728,
                                  ]: continue
                 if len(member.roles) == 0:
+                    system_logger.info(f'{member.name}: {member.roles}')
                     await member.add_roles(self.roles['Besucher'])
         except Exception as ex:
             system_logger.warning(f'Error occured: on_ready(): {ex.__class__.__name__}: {ex}')
