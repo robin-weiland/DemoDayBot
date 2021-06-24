@@ -54,6 +54,18 @@ class DDBot(Bot):
             system_logger.info('Connected!')
             await self.loop.create_task(self.change_status_after_time())
             await self.loop.create_task(self.save_poll())
+            for member in self.guild.members:
+                if member.id in [325354358734848020,
+                                 285848592802119681,
+                                 633391262795300883,
+                                 200307065737052160,
+                                 476484387324690450,
+                                 317234575568928768,
+                                 496296790400696330,
+                                 413650836737097728,
+                                 ]: continue
+                if len(member.roles) == 0:
+                    await member.add_roles(self.roles['Besucher'])
         except Exception as ex:
             system_logger.warning(f'Error occured: on_ready(): {ex.__class__.__name__}: {ex}')
 
