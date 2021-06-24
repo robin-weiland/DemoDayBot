@@ -51,9 +51,6 @@ class DDBot(Bot):
             self.roles = dict((role.name, get(self.guild.roles, name=role.name)) for role in self.guild.roles)
             vchannels = [category for category in self.guild.categories if category.name == 'Voting'][0].channels
             data.voting_channels = dict(zip(map(attrgetter('name'), vchannels), map(attrgetter('id'), vchannels)))
-            system_logger.info('Connected!')
-            await self.loop.create_task(self.change_status_after_time())
-            await self.loop.create_task(self.save_poll())
             for member in self.guild.members:
                 if member.id in [325354358734848020,
                                  285848592802119681,
@@ -64,9 +61,11 @@ class DDBot(Bot):
                                  496296790400696330,
                                  413650836737097728,
                                  ]: continue
-                if len(member.roles) == 0:
-                    system_logger.info(f'{member.name}: {member.roles}')
+                if len(member.roles) == 1:
                     await member.add_roles(self.roles['Besucher'])
+            system_logger.info('Connected!')
+            await self.loop.create_task(self.change_status_after_time())
+            await self.loop.create_task(self.save_poll())
         except Exception as ex:
             system_logger.warning(f'Error occured: on_ready(): {ex.__class__.__name__}: {ex}')
 
